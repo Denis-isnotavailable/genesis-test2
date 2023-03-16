@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/genesis-test2/static/css/main.bbacf0e8.css",
+    "main.js": "/genesis-test2/static/js/main.20a68fa1.js",
+    "static/js/29.d6e0a3d3.chunk.js": "/genesis-test2/static/js/29.d6e0a3d3.chunk.js",
+    "static/js/664.d9160aeb.chunk.js": "/genesis-test2/static/js/664.d9160aeb.chunk.js",
+    "static/js/787.c54b43ff.chunk.js": "/genesis-test2/static/js/787.c54b43ff.chunk.js",
+    "static/js/881.ebf3ea7d.chunk.js": "/genesis-test2/static/js/881.ebf3ea7d.chunk.js",
+    "static/js/903.b62600bb.chunk.js": "/genesis-test2/static/js/903.b62600bb.chunk.js",
+    "index.html": "/genesis-test2/index.html",
+    "main.bbacf0e8.css.map": "/genesis-test2/static/css/main.bbacf0e8.css.map",
+    "main.20a68fa1.js.map": "/genesis-test2/static/js/main.20a68fa1.js.map",
+    "29.d6e0a3d3.chunk.js.map": "/genesis-test2/static/js/29.d6e0a3d3.chunk.js.map",
+    "664.d9160aeb.chunk.js.map": "/genesis-test2/static/js/664.d9160aeb.chunk.js.map",
+    "787.c54b43ff.chunk.js.map": "/genesis-test2/static/js/787.c54b43ff.chunk.js.map",
+    "881.ebf3ea7d.chunk.js.map": "/genesis-test2/static/js/881.ebf3ea7d.chunk.js.map",
+    "903.b62600bb.chunk.js.map": "/genesis-test2/static/js/903.b62600bb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bbacf0e8.css",
+    "static/js/main.20a68fa1.js"
+  ]
+}
