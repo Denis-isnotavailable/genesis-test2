@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AiFillUnlock, AiFillLock, AiOutlineArrowLeft } from "react-icons/ai";
-import ReactPlayer from 'react-player';
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import {
     getOneCourse,
@@ -12,24 +11,20 @@ import {
 import {
     DescriptionStyled,
     ImageThumbStyled,
-    LessonItemStyled,
-    LessonsListStyled,
     OneCoursePageStyled,
-    VideoStyled,
-    ButtonThumbStyled, 
-    LessonDescriptionStyled
+    ButtonThumbStyled
 } from "./OneCoursePage.styled";
+import LessonsList from "components/LessonsList/LessonsList";
 
 
 const OneCoursePage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const course = useSelector(state => state.oneCourse);
-    const isLoading = useSelector(state => state.isLoading);
-    const currentWatchingLesson = useSelector(state => state.currentWatchingLesson);
+    const course = useSelector(state => state.courses.oneCourse);
+    const isLoading = useSelector(state => state.courses.isLoading);
+    const currentWatchingLesson = useSelector(state => state.currentLessons.currentWatchingLesson);
     const [currentLesson, setCurrentLesson] = useState(null);
-    const [currentLessonTime, setCurrentLessonTime] = useState(0);   
-    const player = useRef();     
+    const [currentLessonTime, setCurrentLessonTime] = useState(0);
     
 
     useEffect(() => {
@@ -44,12 +39,10 @@ const OneCoursePage = () => {
         if (i !== -1) {
             setCurrentLesson(currentWatchingLesson[i]);
             setCurrentLessonTime(currentWatchingLesson[i].currentLessonTime);
-            console.log("work redux");
         }
         else if (Object.keys(course).length !== 0) {
             const i = course.lessons.findIndex(lesson => lesson.order === 1);          
-            setCurrentLesson(course.lessons[i]); 
-            console.log("work state");
+            setCurrentLesson(course.lessons[i]);
         }        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [course]);
@@ -78,8 +71,7 @@ const OneCoursePage = () => {
     const handleSetLessonTime = (time) => {
         const t = time;
         if (time !== 0 && t - currentLessonTime >= 2) {           
-            setCurrentLessonTime(time);
-            console.log(currentLessonTime);
+            setCurrentLessonTime(time);            
         };      
     }
 
@@ -92,8 +84,7 @@ const OneCoursePage = () => {
         duration } = course;
    
     return (
-        <>
-        {!isLoading && Object.keys(course).length !== 0 &&
+        <>{!isLoading && Object.keys(course).length !== 0 &&
         <OneCoursePageStyled>
             
             <ButtonThumbStyled to={"/"} >
@@ -114,49 +105,16 @@ const OneCoursePage = () => {
             </DescriptionStyled>
 
             <h3>Choose the lesson to watch</h3>
-                
-            <LessonsListStyled>
-                    {[...lessons]
-                        .sort((lesson1, lesson2) => lesson1.order - lesson2.order)
-                        .map(lesson =>
-                        <LessonItemStyled
-                            key={lesson.id}
-                            onClick={() => handleSetLessonData(lesson)}
-                            status={lesson.status === "unlocked" && lesson.link}
-                        >
-                            <LessonDescriptionStyled>
-                                <div>{lesson.status === "unlocked" && lesson.link ? <AiFillUnlock size={38} /> : <AiFillLock size={38} />}</div>
-                                <h4>Lesson {lesson.order}: {lesson.title}</h4>
-                            </LessonDescriptionStyled>
-                            
-                                
-                            {currentLesson?.order === lesson?.order &&
-                            lesson?.status !== "locked" && lesson.link &&
-                            <VideoStyled>
-                                <ReactPlayer
-                                    ref={player}
-                                    url={lesson.link}                                                
-                                    muted={true}    
-                                    pip={true}
-                                    stopOnUnmount={false}
-                                    config={{
-                                        file: {
-                                            hlsOptions: { 
-                                                autoStartLoad: true,
-                                                startPosition: currentLessonTime,                                                    
-                                            }}
-                                    }}
-                                    controls                                
-                                    width={'100%'}
-                                    onProgress={e => currentLesson?.order === lesson?.order && handleSetLessonTime(e.playedSeconds)}
-                                />
-                            </VideoStyled>}
-                        </LessonItemStyled>)}
-            </LessonsListStyled> 
             
-        </OneCoursePageStyled>}
-        </>
-                        
+            <LessonsList
+                lessons={lessons}                        
+                currentLesson={currentLesson}
+                currentLessonTime={currentLessonTime}
+                handleSetLessonData={handleSetLessonData}
+                handleSetLessonTime={handleSetLessonTime}
+            /> 
+            
+        </OneCoursePageStyled>}</>            
     );
 }
 

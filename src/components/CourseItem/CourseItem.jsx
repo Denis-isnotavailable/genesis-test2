@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import {
@@ -5,11 +7,21 @@ import {
     CourseImageStyled,
     CourseDescriptionStyled,
     CourseSkillsStyled,
-    CourseLessonsAndRatingStyled
+    CourseLessonsAndRatingStyled,
+    CourseProgressMarkStyled
 } from "./CourseItem.styled";
 
 
 const CourseItem = ({ course }) => {
+    const currentWatchingLesson = useSelector(state => state.currentLessons.currentWatchingLesson);
+    const [isInProgress, setIsInProgress] = useState(false);
+
+    useEffect(() => {
+        const isCourseinProgress = currentWatchingLesson.find(lesson => lesson.courseId === course.id);
+        if (isCourseinProgress) {
+            setIsInProgress(true);
+        }
+    }, [course.id, currentWatchingLesson]);
 
     const { previewImageLink, title,  lessonsCount, rating, meta, id } = course;
 
@@ -19,7 +31,9 @@ const CourseItem = ({ course }) => {
 
                 <CourseImageStyled>
                     <img src={`${previewImageLink}/cover.webp`} alt="course poster" width={320} />
-                </CourseImageStyled>             
+                </CourseImageStyled>
+                
+                {isInProgress && <CourseProgressMarkStyled>IN PROGRESS</CourseProgressMarkStyled>}
 
                 <CourseDescriptionStyled> 
                     <h2>{title}</h2>

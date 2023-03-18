@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllCourses, getOneCourse, resetOneCourse, setCurrentWatchingLesson, setCurrentPage } from "./operations";
+import {
+    getAllCourses,
+    getOneCourse,
+    resetOneCourse,
+    setCurrentPage
+} from "./operations";
 
 
 const initialState = {
@@ -9,7 +14,6 @@ const initialState = {
     error: null,
     pages: [],
     currentPage: 1,
-    currentWatchingLesson: []
 };
 
 const coursesSlice = createSlice({
@@ -47,11 +51,6 @@ const coursesSlice = createSlice({
             })
             .addCase(setCurrentPage.fulfilled, (state, action) => {                
                 state.currentPage = action.payload;
-            })
-            .addCase(setCurrentWatchingLesson.fulfilled, (state, action) => {
-                // console.log("action.payload", action.payload);
-                const i = state.currentWatchingLesson.findIndex(lesson => lesson.courseId === action.payload.courseId);
-                i === -1 ? state.currentWatchingLesson.push(action.payload) : state.currentWatchingLesson.splice(i, 1, action.payload);
             })
     }
 });

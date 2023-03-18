@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CourseItemStyled = styled.li`
+    position: relative;
     :not(:last-child) {
         margin-bottom: 32px;
     }
@@ -62,6 +63,14 @@ export const CourseLessonsAndRatingStyled = styled.div`
 
 `;
 
-export const CourseSkillsStyled = styled.ul`
-    /* overflow: hidden; */
+export const CourseSkillsStyled = styled.ul``;
+
+export const CourseProgressMarkStyled = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    font-size: 32px;
+
+    color: rgb(255, 0, 0);
 `;

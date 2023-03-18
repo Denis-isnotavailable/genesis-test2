@@ -1,8 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-// import CoursesPage from "pages/CoursesPage/CoursesPage";
-
 const CoursesPage = lazy(() => import("../pages/CoursesPage/CoursesPage"));
 const OneCoursePage = lazy(() => import("../pages/OneCoursePage/OneCoursePage"))
 

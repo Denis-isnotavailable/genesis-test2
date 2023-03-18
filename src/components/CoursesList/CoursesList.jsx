@@ -1,19 +1,19 @@
-import CourseItem from "../../components/CourseItem/CourseItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import CourseItem from "../../components/CourseItem/CourseItem";
 import { getAllCourses } from "../../redux/operations";
 import { CoursesListStyled } from "./CoursesList.styled";
 
 
 const CoursesList = ({page}) => {
     const dispatch = useDispatch();
-    const courses = useSelector(state => state.courses);
+    const courses = useSelector(state => state.courses.courses);
 
     useEffect(() => {
         dispatch(getAllCourses())
     }, [dispatch])
-
-    // console.log(courses);    
+    
 
     return (
         <CoursesListStyled>

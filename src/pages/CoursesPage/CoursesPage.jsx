@@ -8,9 +8,8 @@ import { setCurrentPage } from "../../redux/operations";
 
 const CoursesPage = () => {
     const dispatch = useDispatch();
-    const pages = useSelector(state => state.pages);
-    const currentPage = useSelector(state => state.currentPage);
-    // const [page, setPage] = useState(1);
+    const pages = useSelector(state => state.courses.pages);
+    const currentPage = useSelector(state => state.courses.currentPage);  
     const [paginationArr, setPaginationArr] = useState([]);    
     
     useEffect(() => {
@@ -29,8 +28,7 @@ const CoursesPage = () => {
     
 
     const handlePagination = (pageValue) => {
-        dispatch(setCurrentPage(pageValue))
-        // setPage(pageValue);
+        dispatch(setCurrentPage(pageValue));
         window.scrollTo({
             top: 0,
             behavior: "smooth"
