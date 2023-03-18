@@ -85,11 +85,6 @@ export const VideoStyled = styled.div`
 export const LessonsListStyled = styled.ul``;
 
 export const LessonItemStyled = styled.li`
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    height: 48px;
     border-radius: 6px;
 
     background-color: ${p => p.status ? "#ffffff" : "#ed9e9e"};
@@ -110,6 +105,13 @@ export const LessonItemStyled = styled.li`
     :focus {
         background-color: ${p => p.status && "#dbdbe1"};        
     }
+`;
+
+export const LessonDescriptionStyled = styled.div`
+    display: flex;
+    align-items: center;
+
+    height: 48px;
 `;
 
 export const ButtonThumbStyled = styled(NavLink)`

@@ -5,7 +5,7 @@ export const CourseItemStyled = styled.li`
         margin-bottom: 32px;
     }
     width: 320px;
-    height: 456px;   
+    height: 480px;   
 
     background-color: #fff;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
@@ -62,4 +62,6 @@ export const CourseLessonsAndRatingStyled = styled.div`
 
 `;
 
-export const CourseSkillsStyled = styled.ul``;
+export const CourseSkillsStyled = styled.ul`
+    /* overflow: hidden; */
+`;

@@ -1,13 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// const header = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
-// const body = 'eyJzdWIiOiJkOTRlNjg4NS1kM2U5LTQwY2EtYTVjYy01MDRkNjZlZDVlN2QiLCJwbGF0Zm9ybSI6InN1YnNjcmlwdGlvbnMiLCJpYXQiOjE2Nzg3MDQ3NjIsImV4cCI6MTY3OTYwNDc2Mn0'
-// const signature = 'Qw3LF39CDp27ZxoGzt5rikJM_OTx0eNaoyFFLxxrXUM'
-// const token = [header, body, signature].join('.');
 
 axios.defaults.baseURL = "https://api.wisey.app/api/v1";
-// axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
 const setToken = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`; 
@@ -58,4 +53,9 @@ export const resetOneCourse = createAsyncThunk("courses/resetOneCourse", () => {
 // SET CURRRENT PAGE
 export const setCurrentPage = createAsyncThunk("courses/setCurrentPage", (page) => {    
     return page;
+});
+
+// SET CURRRENT PAGE
+export const setCurrentWatchingLesson = createAsyncThunk("courses/setCurrentWatchingLesson", (data) => {
+    return data;
 });
