@@ -24,11 +24,16 @@ export const CourseImageStyled = styled.div`
     width: 320px;
     height: 140px;
     margin-bottom: 24px;
+`;
 
-    img {
-        width: 100%;
-        height: 100%;
-    }
+export const ImageStyled = styled.img`
+    display: ${p => p.isShow ? "block" : "none"};
+    width: 100%;
+    height: 100%;
+`;
+
+export const VideoStyled = styled.div`
+    display: ${p => p.isShow ? "block" : "none"};
 `;
 
 export const CourseDescriptionStyled = styled.div`
